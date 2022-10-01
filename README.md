@@ -16,5 +16,7 @@
     - create a command to print Player Stats:
         - min / max / average try by user
         - best top 3 player
+    - Clear the scoreboard
+    - Remove an entry from the scoreboard
 
 # How execute ?
