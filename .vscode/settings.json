@@ -32,5 +32,11 @@
     "vscode-coverage-highlighter.files": [
         "dist/report_coverage.xml"
     ],
-    "vscode-coverage-highlighter.defaultState": "enable"
+    "vscode-coverage-highlighter.defaultState": "enable",
+    "editor.rulers": [
+        80
+    ],
+    "workbench.colorCustomizations": {
+        "editorRuler.foreground": "#575758"
+    }
 }
