@@ -6,12 +6,15 @@ Main Executable
 import moreorless
 
 
+SCOREBOARD_PATH = "scoreboard.json"
+
+
 def main():
     """
     Main Function
     """
     print("Hello World !!")
-    moreorless.game()
+    moreorless.game(scoreboard_path=SCOREBOARD_PATH)
 
 
 if __name__ == "__main__":
