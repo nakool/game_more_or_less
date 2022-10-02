@@ -9,11 +9,16 @@ DEFAULT_PLAYERNAME_MIN_LENGHT = 4
 DEFAULT_PLAYERNAME_MAX_LENGHT = 20
 
 
-def store_player_score(player_name: str, player_score: int):
+def store_player_score(
+        player_name: str,
+        player_score: int,
+        scoreboard_path: str):
     try:
-        with open("scoreboard.json", "r") as _rf:
+        with open(scoreboard_path, "r") as _rf:
             _scoreboard = json.load(_rf)
     except FileNotFoundError:
+        _scoreboard = list()
+    except json.JSONDecodeError:
         _scoreboard = list()
 
     _score_entry = {
@@ -21,7 +26,7 @@ def store_player_score(player_name: str, player_score: int):
         "score": player_score
     }
     _scoreboard.append(_score_entry)
-    with open("scoreboard.json", "w") as _f:
+    with open(scoreboard_path, "w") as _f:
         json.dump(_scoreboard, _f)
 
 
@@ -62,6 +67,7 @@ def ask_guess_number(min_guess_number: int, max_guess_number: int) -> int:
 
 
 def game(
+        scoreboard_path: str,
         min_number: int = DEFAULT_MIN_NUMBER,
         max_number: int = DEFAULT_MAX_NUMBER) -> None:
     _enternumber = None
@@ -87,5 +93,8 @@ def game(
         elif _enternumber == _rnd:
             print(f"You're genius {_player}!!!")
             print(f"You do it in {_try_count} try")
-            store_player_score(player_name=_player, player_score=_try_count)
+            store_player_score(
+                player_name=_player,
+                player_score=_try_count,
+                scoreboard_path=scoreboard_path)
     return None
