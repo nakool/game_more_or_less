@@ -70,35 +70,60 @@ def ask_guess_number(min_guess_number: int, max_guess_number: int) -> int:
     return _guess_number
 
 
-def game(
-        scoreboard_path: str,
-        min_number: int = DEFAULT_MIN_NUMBER,
-        max_number: int = DEFAULT_MAX_NUMBER) -> None:
-    _enternumber = None
-    _rnd = random.randint(min_number, max_number)
-    _try_count = 0
-
+def game_init(min_number: int, max_number: int) -> str:
     print("Welcome in more & less game")
     _player = ask_player_name()
     print(
         f"The rules are simple, you have to find \
             the number between {min_number} and {max_number}")
     input("Press enter to play with me.")
+    return _player
+
+
+def ask_continue_to_play() -> bool:
+    print("Do you want to play again? [Y/n]")
+    if input().upper() == "Y":
+        return True
+    else:
+        print("Thanks you and goodbye")
+        return False
+
+
+def game_turn(
+        min_number: int,
+        max_number: int,
+        scoreboard_path: str,
+        player: str) -> bool:
+    _enternumber = None
+    _guess_number = random.randint(min_number, max_number)
+    _try_count = 0
 
     print(f"Give me a number between {min_number} and {max_number}:")
-    while _enternumber != _rnd:
+    while _enternumber != _guess_number:
         _enternumber = ask_guess_number(min_number, max_number)
         # try_count = try_count + 1
         _try_count += 1
-        if _enternumber < _rnd:
+        if _enternumber < _guess_number:
             print("it's more.\n")
-        elif _enternumber > _rnd:
+        elif _enternumber > _guess_number:
             print("It's less.\n")
-        elif _enternumber == _rnd:
-            print(f"You're genius {_player}!!!")
+        elif _enternumber == _guess_number:
+            print(f"You're genius {player}!!!")
             print(f"You do it in {_try_count} try")
             store_player_score(
-                player_name=_player,
+                player_name=player,
                 player_score=_try_count,
                 scoreboard_path=scoreboard_path)
+
+    return ask_continue_to_play()
+
+
+def game(
+        scoreboard_path: str,
+        min_number: int = DEFAULT_MIN_NUMBER,
+        max_number: int = DEFAULT_MAX_NUMBER) -> None:
+    _player = game_init(min_number, max_number)
+    while game_turn(min_number, max_number, scoreboard_path, _player):
+        pass
+
     return None
