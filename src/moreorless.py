@@ -13,12 +13,16 @@ def store_player_score(
         player_name: str,
         player_score: int,
         scoreboard_path: str):
+    """ This function is responsible to add the player score to the scoreboard \
+    and create it if it don t exist or miss formatted"""
     try:
         with open(scoreboard_path, "r") as _rf:
             _scoreboard = json.load(_rf)
     except FileNotFoundError:
         _scoreboard = list()
     except json.JSONDecodeError:
+        print(f"Previous scoreboard at {scoreboard_path=} is miss formatted. \
+            We erase it")
         _scoreboard = list()
 
     _score_entry = {
