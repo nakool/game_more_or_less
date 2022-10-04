@@ -25,6 +25,9 @@
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true,
     "python.testing.pytestArgs": [
+        "-v",
+        "--cov=moreorless",
+        "--cov-report=xml",
         "test"
     ],
     "editor.formatOnSaveMode": "file",
