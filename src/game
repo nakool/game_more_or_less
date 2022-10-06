@@ -1,0 +1,28 @@
+#!/usr/bin/env python3
+"""
+Main Executable
+"""
+
+import typer
+import moreorless
+import pathlib
+
+app = typer.Typer()
+SCOREBOARD_PATH = "scoreboard.json"
+
+
+@app.command()
+def scoreboard():
+    pass
+
+
+@app.command()
+def more_or_less_game(scoreboard_path: pathlib.Path = SCOREBOARD_PATH):
+    """
+    More or less Game
+    """
+    moreorless.game(scoreboard_path=scoreboard_path)
+
+
+if __name__ == "__main__":
+    app()
