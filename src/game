@@ -1,21 +1,23 @@
-#!/usr/bin/env python3.8
+#!/usr/bin/env python3
 """
 Main Executable
 """
 
+import typer
 import moreorless
 
 
+app = typer.Typer()
 SCOREBOARD_PATH = "scoreboard.json"
 
 
-def main():
+@app.command()
+def more_or_less_game():
     """
-    Main Function
+    More or less Game
     """
-    print("Hello World !!")
     moreorless.game(scoreboard_path=SCOREBOARD_PATH)
 
 
 if __name__ == "__main__":
-    main()
+    app()
