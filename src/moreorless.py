@@ -1,5 +1,7 @@
 #!/usr/bin/env python3.8
 
+from rich.console import Console
+from rich.table import Table
 import random
 import json
 
@@ -50,14 +52,16 @@ def ask_player_name(
 
 
 def ask_guess_number(min_guess_number: int, max_guess_number: int) -> int:
-    """ Demande une valeur au joueur jusqu a ce qu elle soit comprise entre
-    le min_guess_number et le max_guess_number """
+    """
+    Ask the player until it is correct a number between \
+    min_number and max_number 
+    """
     _is_valid = False
     while _is_valid is False:
         try:
             _guess_number = int(input())
         except ValueError:
-            print("You don t entered a valid number.")
+            print("You don't entered a valid number.")
         else:
             if int(_guess_number) >= min_guess_number and \
                     int(_guess_number) <= max_guess_number:
@@ -68,6 +72,26 @@ def ask_guess_number(min_guess_number: int, max_guess_number: int) -> int:
                         please enter a value between \
                         {min_guess_number} and {max_guess_number}!")
     return _guess_number
+
+
+def game_scoreboard(scoreboard_path: str):
+    """
+    This function display the scoreboard
+    """
+    fileobject = open(scoreboard_path, "r")
+    jsoncontent = fileobject.read()
+    scoreboard = json.loads(jsoncontent)
+
+    table = Table(title="SCOREBOARD")
+
+    table.add_column("PLAYER NAME", justify="left", style="cyan")
+    table.add_column("SCORE", justify="right", style="red")
+
+    for _i in scoreboard:
+        table.add_row(_i['player'], str(_i['score']))
+
+    console = Console()
+    console.print(table)
 
 
 def game_init(min_number: int, max_number: int) -> str:

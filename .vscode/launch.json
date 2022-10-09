@@ -5,13 +5,28 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Main",
+            "name": "Main: Scoreboard",
             "type": "python",
             "request": "launch",
-            "program": "main.py",
+            "program": "game",
             "console": "integratedTerminal",
             "justMyCode": true,
-            "cwd":"${workspaceFolder}/src"
+            "cwd": "${workspaceFolder}/src",
+            "args": [
+                "scoreboard"
+            ]
+        },
+        {
+            "name": "Main: More or less",
+            "type": "python",
+            "request": "launch",
+            "program": "game",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "cwd": "${workspaceFolder}/src",
+            "args": [
+                "more-or-less-game"
+            ]
         }
     ]
 }
