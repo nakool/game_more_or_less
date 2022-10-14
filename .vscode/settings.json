@@ -37,7 +37,7 @@
     ],
     "vscode-coverage-highlighter.defaultState": "enable",
     "editor.rulers": [
-        80
+        79
     ],
     "workbench.colorCustomizations": {
         "editorRuler.foreground": "#575758"
