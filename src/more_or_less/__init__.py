@@ -11,6 +11,34 @@ DEFAULT_PLAYERNAME_MIN_LENGHT = 4
 DEFAULT_PLAYERNAME_MAX_LENGHT = 20
 
 
+def erase_player_score(player_name: str,
+                       player_score: int,
+                       scoreboard_path: str):
+    """ This function is responsible to \
+        erase the player score to the scoreboard """
+    try:
+        with open(scoreboard_path, "r") as _rf:
+            _scoreboard = json.load(_rf)
+    except FileNotFoundError:
+        _scoreboard = list()
+    except json.JSONDecodeError:
+        print(f"Previous scoreboard at {scoreboard_path=} is miss formatted. \
+            We erase it")
+        _scoreboard = list()
+    else:
+        print("There are nothing to erase here!")
+
+    _i = {
+        "player": player_name,
+        "score": player_score
+    }
+    for _i[str] in _scoreboard:
+        _scoreboard.clear()
+        print(f"The scoreboard {scoreboard_path=} is erased!")
+        with open(scoreboard_path, "w") as _ef:
+            json.dump(_scoreboard, _ef)
+
+
 def store_player_score(
         player_name: str,
         player_score: int,
