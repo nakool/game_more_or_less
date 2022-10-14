@@ -21,7 +21,8 @@ def test_game_one_turn(mock_game_turn: mock.Mock, mock_game_init: mock.Mock):
 
 @mock.patch("moreorless.game_init", side_effect=[PLAYER_NAME])
 @mock.patch("moreorless.game_turn", side_effect=[True, False])
-def test_game_multiple_turn(mock_game_turn: mock.Mock, mock_game_init: mock.Mock):
+def test_game_multiple_turn(mock_game_turn: mock.Mock,
+                            mock_game_init: mock.Mock):
     game(min_number=DEFAULT_MIN_NUMBER, max_number=DEFAULT_MAX_NUMBER,
          scoreboard_path=SCOREBOARD_PATH)
 

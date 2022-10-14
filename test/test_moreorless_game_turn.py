@@ -13,7 +13,8 @@ PLAYER_NAME = "playername"
 PLAYER_SCORE = 3
 
 
-@mock.patch("moreorless.ask_guess_number", side_effect=[VALUE_INFERIOR, VALUE_SUPERIOR, VALUE_EQUAL])
+@mock.patch("moreorless.ask_guess_number",
+            side_effect=[VALUE_INFERIOR, VALUE_SUPERIOR, VALUE_EQUAL])
 @mock.patch("moreorless.ask_continue_to_play", side_effect=[CONTINUE_VALUE])
 @mock.patch("moreorless.store_player_score", side_effect=[None])
 @mock.patch("random.randint", side_effect=[VALUE_EQUAL])

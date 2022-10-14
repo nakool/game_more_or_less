@@ -15,7 +15,8 @@ def store_player_score(
         player_name: str,
         player_score: int,
         scoreboard_path: str):
-    """ This function is responsible to add the player score to the scoreboard \
+    """ This function is responsible to \
+        add the player score to the scoreboard \
     and create it if it don t exist or miss formatted"""
     try:
         with open(scoreboard_path, "r") as _rf:
@@ -54,7 +55,7 @@ def ask_player_name(
 def ask_guess_number(min_guess_number: int, max_guess_number: int) -> int:
     """
     Ask the player until it is correct a number between \
-    min_number and max_number 
+    min_number and max_number
     """
     _is_valid = False
     while _is_valid is False:
