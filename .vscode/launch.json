@@ -5,6 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Main: Erase Scoreboard",
+            "type": "python",
+            "request": "launch",
+            "program": "game",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "cwd": "${workspaceFolder}/src",
+            "args": [
+                "erase_scoreboard"
+            ]
+        },
+        {
             "name": "Main: Scoreboard",
             "type": "python",
             "request": "launch",
