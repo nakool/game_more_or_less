@@ -8,7 +8,17 @@ import typer
 from . import game_scoreboard, game
 
 app = typer.Typer()
-SCOREBOARD_PATH = "scoreboard.json"
+SCOREBOARD_PATH = "src/scoreboard.json"
+
+
+@app.command()
+def erase_scoreboard(scoreboard_path: pathlib.Path = SCOREBOARD_PATH):
+    """
+    More or less Erase Scoreboard
+    """
+    moreorless.erase_player_score(player_name=str,
+                                  player_score=int,
+                                  scoreboard_path=scoreboard_path)
 
 
 @app.command()
