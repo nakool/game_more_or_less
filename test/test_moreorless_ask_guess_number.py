@@ -1,6 +1,6 @@
 from unittest import mock
 
-from moreorless import ask_guess_number, DEFAULT_MIN_NUMBER, DEFAULT_MAX_NUMBER
+from more_or_less import ask_guess_number, DEFAULT_MIN_NUMBER, DEFAULT_MAX_NUMBER
 
 EMPTY_VALUE = ""
 ACCEPTED_VALUE = "48"

@@ -1,6 +1,6 @@
 from unittest import mock
 
-from moreorless import ask_continue_to_play
+from more_or_less import ask_continue_to_play
 
 VALID_VALUE_INPUT = "Y"
 VALID_VALUE_INPUT_LOWER = "y"

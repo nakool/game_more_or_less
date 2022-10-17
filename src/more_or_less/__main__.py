@@ -5,7 +5,7 @@ Main Executable
 
 import pathlib
 import typer
-import moreorless
+from . import game_scoreboard, game
 
 app = typer.Typer()
 SCOREBOARD_PATH = "scoreboard.json"
@@ -16,7 +16,7 @@ def scoreboard(scoreboard_path: pathlib.Path = SCOREBOARD_PATH):
     """
     More or less Scoreboard
     """
-    moreorless.game_scoreboard(scoreboard_path=scoreboard_path)
+    game_scoreboard(scoreboard_path=scoreboard_path)
 
 
 @app.command()
@@ -24,7 +24,7 @@ def more_or_less_game(scoreboard_path: pathlib.Path = SCOREBOARD_PATH):
     """
     More or less Game
     """
-    moreorless.game(scoreboard_path=scoreboard_path)
+    game(scoreboard_path=scoreboard_path)
 
 
 if __name__ == "__main__":
