@@ -1,6 +1,6 @@
 from unittest import mock
 import json
-from moreorless import store_player_score
+from more_or_less import store_player_score
 
 
 SCOREBOARD_VALID = []

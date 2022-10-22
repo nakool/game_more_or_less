@@ -1,6 +1,6 @@
 from unittest import mock
 
-from moreorless import ask_player_name, \
+from more_or_less import ask_player_name, \
     DEFAULT_PLAYERNAME_MIN_LENGHT, DEFAULT_PLAYERNAME_MAX_LENGHT
 
 EMPTY_VALUE = ""
