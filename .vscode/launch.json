@@ -8,13 +8,14 @@
             "name": "Main: Erase Scoreboard",
             "type": "python",
             "request": "launch",
-            "program": "game",
+            "module": "more_or_less",
             "console": "integratedTerminal",
             "justMyCode": true,
-            "cwd": "${workspaceFolder}/src",
+            "cwd": "${workspaceFolder}",
             "args": [
-                "erase_scoreboard"
-            ]
+                "erase-scoreboard"
+            ],
+            "preLaunchTask": "build-application"
         },
         {
             "name": "Main: Scoreboard",
