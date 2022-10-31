@@ -1,5 +1,6 @@
 """ more_or_less  """
 
+import os
 import random
 import json
 from rich.console import Console
@@ -12,32 +13,20 @@ DEFAULT_PLAYERNAME_MIN_LENGHT = 4
 DEFAULT_PLAYERNAME_MAX_LENGHT = 20
 
 
-def erase_player_score(player_name: str,
-                       player_score: int,
-                       scoreboard_path: str):
+def erase_player_score(scoreboard_path: str):
     """ This function is responsible to \
-        erase the player score to the scoreboard """
+        erase the scoreboard """
+    _scoreboard = list()
     try:
-        with open(scoreboard_path, "r", encoding="utf-8") as _rf:
-            _scoreboard = json.load(_rf)
+        os.path.exists(scoreboard_path)
+        os.remove(scoreboard_path)
+        print(f"The scoreboard at {scoreboard_path=} is successfully erased!")
     except FileNotFoundError:
-        _scoreboard = list()
-    except json.JSONDecodeError:
-        print(f"Previous scoreboard at {scoreboard_path=} is miss formatted. \
-            We erase it")
-        _scoreboard = list()
-    else:
         print("There are nothing to erase here!")
+        _scoreboard = list()
 
-    _i = {
-        "player": player_name,
-        "score": player_score
-    }
-    for _i[str] in _scoreboard:
-        _scoreboard.clear()
-        print(f"The scoreboard {scoreboard_path=} is erased!")
-        with open(scoreboard_path, "w", encoding="utf-8") as _ef:
-            json.dump(_scoreboard, _ef)
+    with open(scoreboard_path, "w", encoding="utf-8") as _cf:
+        json.dump(_scoreboard, _cf)
 
 
 def store_player_score(
@@ -108,9 +97,12 @@ def game_scoreboard(scoreboard_path: str):
     """
     This function display the scoreboard
     """
-    with open(scoreboard_path, "r", encoding="utf-8") as _file:
-        _scoreboard = json.load(_file)
-    # todo: fix exceptions filenotfound
+    try:
+        with open(scoreboard_path, "r", encoding="utf-8") as _file:
+            _scoreboard = json.load(_file)
+        # todo: fix exceptions filenotfound
+    except FileNotFoundError:
+        _scoreboard = list()
 
     _table = Table(title="SCOREBOARD")
 
