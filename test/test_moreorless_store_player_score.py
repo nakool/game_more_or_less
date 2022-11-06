@@ -1,3 +1,4 @@
+from base64 import encode
 from unittest import mock
 import json
 from more_or_less import store_player_score
@@ -34,8 +35,8 @@ def test_store_player_score_valid(
     )
 
     mock_open.assert_has_calls(calls=[
-        mock.call(SCOREBOARD_PATH, "r"),
-        mock.call(SCOREBOARD_PATH, "w")
+        mock.call(SCOREBOARD_PATH, "r", encoding="utf-8"),
+        mock.call(SCOREBOARD_PATH, "w", encoding="utf-8")
     ], any_order=False)
 
     mock_json_load.assert_called_once()
@@ -66,8 +67,8 @@ def test_store_player_score_not_exist(
     )
 
     mock_open.assert_has_calls(calls=[
-        mock.call(SCOREBOARD_PATH, "r"),
-        mock.call(SCOREBOARD_PATH, "w")
+        mock.call(SCOREBOARD_PATH, "r", encoding="utf-8"),
+        mock.call(SCOREBOARD_PATH, "w", encoding="utf-8")
     ], any_order=False)
 
     mock_json_load.assert_not_called()
@@ -99,8 +100,8 @@ def test_store_player_score_not_valid(
     )
 
     mock_open.assert_has_calls(calls=[
-        mock.call(SCOREBOARD_PATH, "r"),
-        mock.call(SCOREBOARD_PATH, "w")
+        mock.call(SCOREBOARD_PATH, "r", encoding="utf-8"),
+        mock.call(SCOREBOARD_PATH, "w", encoding="utf-8")
     ], any_order=False)
 
     mock_json_load.assert_called_once()

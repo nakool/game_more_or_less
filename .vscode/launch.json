@@ -5,6 +5,19 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Main: Erase Scoreboard",
+            "type": "python",
+            "request": "launch",
+            "module": "more_or_less",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "cwd": "${workspaceFolder}",
+            "args": [
+                "erase-scoreboard"
+            ],
+            "preLaunchTask": "build-application"
+        },
+        {
             "name": "Main: Scoreboard",
             "type": "python",
             "request": "launch",

@@ -1,14 +1,32 @@
-#!/usr/bin/env python3.8
+""" more_or_less  """
 
-from rich.console import Console
-from rich.table import Table
+import os
 import random
 import json
+from rich.console import Console
+from rich.table import Table
+
 
 DEFAULT_MIN_NUMBER = 0
 DEFAULT_MAX_NUMBER = 100
 DEFAULT_PLAYERNAME_MIN_LENGHT = 4
 DEFAULT_PLAYERNAME_MAX_LENGHT = 20
+
+
+def erase_player_score(scoreboard_path: str):
+    """ This function is responsible to \
+        erase the scoreboard """
+    _scoreboard = list()
+    try:
+        os.path.exists(scoreboard_path)
+        os.remove(scoreboard_path)
+        print(f"The scoreboard at {scoreboard_path=} is successfully erased!")
+    except FileNotFoundError:
+        print("There are nothing to erase here!")
+        _scoreboard = list()
+
+    with open(scoreboard_path, "w", encoding="utf-8") as _cf:
+        json.dump(_scoreboard, _cf)
 
 
 def store_player_score(
@@ -19,7 +37,7 @@ def store_player_score(
         add the player score to the scoreboard \
     and create it if it don t exist or miss formatted"""
     try:
-        with open(scoreboard_path, "r") as _rf:
+        with open(scoreboard_path, "r", encoding="utf-8") as _rf:
             _scoreboard = json.load(_rf)
     except FileNotFoundError:
         _scoreboard = list()
@@ -33,7 +51,7 @@ def store_player_score(
         "score": player_score
     }
     _scoreboard.append(_score_entry)
-    with open(scoreboard_path, "w") as _f:
+    with open(scoreboard_path, "w", encoding="utf-8") as _f:
         json.dump(_scoreboard, _f)
 
 
@@ -79,20 +97,23 @@ def game_scoreboard(scoreboard_path: str):
     """
     This function display the scoreboard
     """
-    fileobject = open(scoreboard_path, "r")
-    jsoncontent = fileobject.read()
-    scoreboard = json.loads(jsoncontent)
+    try:
+        with open(scoreboard_path, "r", encoding="utf-8") as _file:
+            _scoreboard = json.load(_file)
+        # todo: fix exceptions filenotfound
+    except FileNotFoundError:
+        _scoreboard = list()
 
-    table = Table(title="SCOREBOARD")
+    _table = Table(title="SCOREBOARD")
 
-    table.add_column("PLAYER NAME", justify="left", style="cyan")
-    table.add_column("SCORE", justify="right", style="red")
+    _table.add_column("PLAYER NAME", justify="left", style="cyan")
+    _table.add_column("SCORE", justify="right", style="red")
 
-    for _i in scoreboard:
-        table.add_row(_i['player'], str(_i['score']))
+    for _i in _scoreboard:
+        _table.add_row(_i['player'], str(_i['score']))
 
     console = Console()
-    console.print(table)
+    console.print(_table)
 
 
 def game_init(min_number: int, max_number: int) -> str:
